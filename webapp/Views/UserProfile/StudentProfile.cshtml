@@ -97,15 +97,31 @@
 
                             <form class="smart-form">
                                 <header>
-                                    Responsive grid system
+                                    Settings:
                                 </header>
+
+                                <fieldset>
+                                    <section>
+                                        <label class="label">Subjects you want to learn</label>
+                                        <div class="col col-4">
+                                            <select class="select2" id="category">
+                                                <option value="cmi">Computer science</option>
+                                                <option value="biot">Biotechnology</option>
+                                                <option value="clean">Leaning to be a cleaning lady</option>
+                                            </select>
+                                        </div>
+                                        <div class="col col-4">
+                                            <select class="select2" multiple placeholder="choose subjects" id="subject">
+                                                <option data-category="cmi">discreet math</option>
+                                                <option data-category="biot">physics</option>
+                                            </select>
+                                        </div>
+                                    </section>
+                                </fieldset>
 
                                 <footer>
                                     <button type="submit" class="btn btn-primary">
-                                        Submit
-                                    </button>
-                                    <button type="button" class="btn btn-default" onclick="window.history.back();">
-                                        Back
+                                        Save
                                     </button>
                                 </footer>
                             </form>
@@ -161,6 +177,14 @@
                     }
                 });
             });
+
+
+            $("#category").change(function () {
+                let cls = $(this).select2('val');
+               // $("#subjects").find("option").addClass("hidden");
+               // $("#subjects option[data-category='" + cls + "']").removeClass("hidden");
+            });
+            $("#category").change();
         });
     </script>
 }
