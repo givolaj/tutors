@@ -21,11 +21,14 @@
             <li class="@Html.RouteIf("userprofileindex", "active")">
                 <a href="#" title="Profiles"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">User Profile</span></a>
                 <ul>
+                    <li class="@Html.RouteIf("userprofileindex", "active")">
+                        <a href="@Url.Action("userprofileindex", "userprofile")" title="Profiles"><span class="menu-item-parent">User Profile</span></a>
+                    </li>
                     <li class="@Html.RouteIf("studentprofile", "active")">
-                        <a href="@Url.Action("studentprofile", "userprofile")" title="Profiles"><span class="menu-item-parent">Student Profile</span></a>
+                        <a href="@Url.Action("studentprofile", "userprofile")" title="Profiles"><span class="menu-item-parent">My Student Profile</span></a>
                     </li>
                     <li class="@Html.RouteIf("teacherprofile", "active")">
-                        <a href="@Url.Action("teacherprofile", "userprofile")" title="Profiles"><span class="menu-item-parent">Teacher Profile</span></a>
+                        <a href="@Url.Action("teacherprofile", "userprofile")" title="Profiles"><span class="menu-item-parent">My Teacher Profile</span></a>
                     </li>
                 </ul>
             </li>

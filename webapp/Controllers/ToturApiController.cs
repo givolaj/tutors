@@ -62,5 +62,61 @@ namespace Tutors.Controllers
                 return Ok();
             }
         }
+
+        ///user profile  -------------------------///
+        ///
+        [HttpGet]
+        [Route("getUserProfile")]
+        public IHttpActionResult getUserProfile()
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                string name = User.Identity.Name;
+                var profile = db.userProfiles.FirstOrDefault(x => x.UserName == name);
+                if (profile == null)
+                {
+                    profile = new UserProfile()
+                    {
+                        UserName = name,
+                        Name = name
+                    };
+                    db.userProfiles.Add(profile);
+                    db.SaveChanges();
+                }
+                return Ok(new
+                {
+                    Name = profile.Name,
+                    PhoneNumber = profile.PhoneNumber
+                });
+            }
+        }
+
+        public class UserProfileDto
+        {
+            public string Name { get; set; }
+            public string PhoneNumber { get; set; }
+        }
+
+        [HttpPost]
+        [Route("updateUserProfile")]
+        public IHttpActionResult updateUserProfile(UserProfileDto profileDto)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                string name = User.Identity.Name;
+                var profile = db.userProfiles.FirstOrDefault(x => x.UserName == name);
+                if (profile == null)
+                {
+                    profile = new UserProfile()
+                    {
+                        UserName = User.Identity.Name
+                    };
+                    db.userProfiles.Add(profile);
+                }
+                profile.Name = profileDto.Name;
+                db.SaveChanges();
+                return Ok();
+            }
+        }
     }
 }

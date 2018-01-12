@@ -19,6 +19,17 @@ namespace Tutors.Models
         public bool IsActive { get; set; }
     }
 
+    public class UserProfile
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
+        public string UserName { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+        public string ImageURL { get; set; }
+    }
+
     public partial class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext()
@@ -26,7 +37,8 @@ namespace Tutors.Models
         {
             
         }
-    
+
+        public DbSet<UserProfile> userProfiles { get; set; }       
         public DbSet<StudentProfile> studentProfiles { get; set; }
       
     }
